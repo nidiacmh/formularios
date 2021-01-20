@@ -52,14 +52,16 @@
         <input type="text"
                 class="form-control"
                 formControlName="distrito"
-                placeholder="Distrito">
+                placeholder="Distrito"
+                [class.is-invalid]="distritoNoValido">
       </div>
 
       <div class="col">
         <input type="text"
                 class="form-control"
                 formControlName="ciudad"
-                placeholder="ciudad">
+                placeholder="ciudad"
+                [class.is-invalid]="ciudadNoValido">
       </div>
     </div>
   </div>
