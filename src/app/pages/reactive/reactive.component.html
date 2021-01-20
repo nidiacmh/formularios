@@ -6,7 +6,7 @@
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Nombre</label>
-      <div class="col-8">
+      <div class="col">
 
         <input class="form-control"
                type="text"
@@ -19,7 +19,7 @@
 
     <div class="form-group row">
       <label class="col-2 col-form-label">Apellido</label>
-      <div class="col-8">
+      <div class="col">
 
         <input class="form-control"
                type="text"
@@ -34,7 +34,7 @@
 
   <div class="form-group row">
     <label class="col-2 col-form-label">Correo</label>
-    <div class="col-8">
+    <div class="col">
 
       <input class="form-control"
              type="email"
@@ -42,6 +42,25 @@
              formControlName="correo"
              [class.is-invalid]="correoNoValido">
              <small *ngIf="correoNoValido" class="text-danger">Ingrese un correo valido</small>
+    </div>
+  </div>
+
+  <div class="form-group row" formGroupName="direccion">
+    <label class="col-2 col-form-label">Direccion</label>
+    <div class="form-row col">
+      <div class="col">
+        <input type="text"
+                class="form-control"
+                formControlName="distrito"
+                placeholder="Distrito">
+      </div>
+
+      <div class="col">
+        <input type="text"
+                class="form-control"
+                formControlName="ciudad"
+                placeholder="ciudad">
+      </div>
     </div>
   </div>
 
