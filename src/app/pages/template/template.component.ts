@@ -12,7 +12,8 @@ usuario={
   nombre: 'Nidia',
   apellido:'Meza',
   correo:'nidia@gmail.com',
-  pais:''
+  pais:'',
+  genero:'M'
 }
 
   paises: any[] = [];

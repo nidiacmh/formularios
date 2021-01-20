@@ -89,7 +89,7 @@
               value="M"
               [class.is-invalid]="genero.invalid && genero.touched"
               required
-              ngModel
+              [ngModel]="usuario.genero"
               #genero="ngModel"
               class ="form-check-input">
         <label class="form-check-inline">Masculino</label>
@@ -101,7 +101,7 @@
                 value="F"
                 [class.is-invalid]="genero.invalid && genero.touched"
                 required
-                ngModel
+                [ngModel]="usuario.genero"
                 #genero="ngModel"
                 class ="form-check-input">
         <label class="form-check-inline">Femenino</label>
