@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -11,9 +11,13 @@ export class ReactiveComponent implements OnInit {
   forma: FormGroup;
   constructor(private fb: FormBuilder) {
     this.crearFormulario();
+    this.cargarDataAlFormulario();
   }
 
   ngOnInit(): void {
+  }
+  get pasatiempos(){
+    return this.forma.get('pasatiempos') as FormArray;
   }
 
   get nombreNoValido(){
@@ -36,15 +40,40 @@ export class ReactiveComponent implements OnInit {
 
   crearFormulario(){
     this.forma =  this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(5)]],
+      nombre: ['', [Validators.required, Validators.minLength(3)]],
       apellido: ['', [Validators.required, Validators.minLength(3)]],
       correo: ['',[ Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$'), Validators.required]],
       direccion:this.fb.group({
         distrito:['', Validators.required],
         ciudad: ['',Validators.required],
       }),
+      pasatiempos: this.fb.array([
+
+      ])
     });
   }
+
+  cargarDataAlFormulario(){
+    // this.forma.setValue({
+    this.forma.reset({
+      nombre:'Nidia',
+      apellido:'Meza',
+      correo:'nidia@gmail.com',
+      direccion:{
+        distrito:'Puebla',
+        ciudad:'Puebla'
+      }
+    });
+  }
+
+  agregarPasatiempo(){
+    this.pasatiempos.push(this.fb.control('', Validators.required));
+  }
+
+  borrarPAsatiempo(i: number){
+    this.pasatiempos.removeAt(i);
+  }
+
   guardar(){
     if(this.forma.invalid){
       return Object.values(this.forma.controls).forEach(control => {
@@ -55,8 +84,10 @@ export class ReactiveComponent implements OnInit {
         }
       });
     }
+    this.forma.reset({
+      nombre: 'sin nombre'
+    });
     console.log(this.forma);
   }
-
 
 }
